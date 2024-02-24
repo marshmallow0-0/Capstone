@@ -1,13 +1,13 @@
 import BasicLayout from "../layouts/BasicLayout";
 
-const SearchPage = () => {
+const MyProfilePage = () => {
     return (
         <BasicLayout>
 
-            <div className="text-3xl">SearchPage</div>
+            <div className="text-3xl">MyProfilePage</div>
         </BasicLayout>
 
     );
 }
 
-export default SearchPage;
+export default MyProfilePage;
