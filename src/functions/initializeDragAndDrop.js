@@ -20,14 +20,14 @@ function initializeDragAndDrop(dragDropAreaId, fileUploadInputId) {
         dragDropArea.classList.remove('drag-over');
         const files = e.dataTransfer.files;
         console.log('Dropped files:', files);
-        // 파일 처리 로직을 추가가능
+
     });
 
     fileUploadInput.addEventListener('change', function () {
         // 파일 선택 이벤트 처리
         const files = fileUploadInput.files;
         console.log('Selected files:', files);
-        // 파일 처리 로직을 추가가능
+
     });
 }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import initializeDragAndDrop from '../functions/initializeDragAndDrop'
+import { apiAxios } from '../api/apiAxios';
 
 const MainBody = () => {
     const [uploadedImage, setUploadedImage] = useState(null);
@@ -37,9 +38,21 @@ const MainBody = () => {
         handleDroppedFiles(files);
     }
 
-    const handleButtonClick = () => {
+    const handleButtonClick = (e) => {
         // 버튼 클릭 이벤트 처리
+        e.preventDefault();
         console.log('Button clicked!');
+        const formData = new FormData();
+        formData.append('image', uploadedImage);
+
+        apiAxios.post('/upload', formData)
+            .then(response => {
+                console.log('success');
+            })
+            .catch(error => {
+                console.error('upload error', error);
+            })
+
     }
     return (
 
