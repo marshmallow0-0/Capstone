@@ -10,15 +10,15 @@ const BasicMenu = () => {
         <nav id='navbar' className={`fixed top-0 left-0 right-0 flex max-w-full bg-white p-3 z-10 shadow`}>
             <div className="w-full  flex  justify-center items-center ">
                 <div className="flex w-1/4  font-bold">
-                    <img className="flex logoImg   w-12 h-12" src="img/logo.png" alt="Logo" />
+                    <img className="flex logoImg   w-12 h-12" src={`${process.env.PUBLIC_URL}/img/logo.png`} alt="Logo" />
                     <div className="flex logoName mt-2 text-2xl  text-blue-500" style={{ textShadow: '2px 2px 2px rgba(0, 0, 0, 0.25)' }}>2JMU</div>
                 </div>
                 <div className="flex space-x-3">
-                    <Link className="nav-link" to="/search" >
+                    {/* <Link className="nav-link" to="/search" >
                         <div className="font-serif hover:opacity-70 font-medium transition duration-500 ease-in-out hover:overline-underline hover:text-underline-offset  hover:bg-gray-600 hover:text-white rounded-md p-2">
                             Search
                         </div>
-                    </Link>
+                    </Link> */}
                     <Link className="nav-link" to="/how">
                         <button style={{ textShadow: '2px 2px 2px rgba(0, 0, 0, 0.3)' }} className="outline-slate-200 hover:outline outline-1 rounded hover:shadow-inner md:hover:text-black-700 hover:rounded-lg  inline-block text-base  transition-all  font-serif font-medium ease-in-out duration-700 opacity-300 leading-tight p-2">
                             How to use

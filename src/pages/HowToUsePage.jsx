@@ -1,4 +1,3 @@
-import Guide from "../components/Guide";
 import BasicLayout from "../layouts/BasicLayout";
 import { GUIDE_STEPS } from "./data";
 const HowToUsePage = () => {

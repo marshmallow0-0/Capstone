@@ -24,7 +24,7 @@ const Footer = () => {
                     </ul>
                 </div>
 
-                <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="/" class="hover:underline">2JMU™</a></span>
+                <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="/" className="hover:underline">2JMU™</a></span>
             </div>
         </div>
     )

@@ -1,9 +1,11 @@
+import Introduce from "../components/Introduce";
 import BasicLayout from "../layouts/BasicLayout";
+import { INTRODUCE } from "./data";
 
 const WhoWeArePage = () => {
     return (
         <BasicLayout>
-            <div className="text-3xl">WhoWeArePage</div>
+            {INTRODUCE.map((guide) => <Introduce {...guide} />)}
         </BasicLayout>
 
     );

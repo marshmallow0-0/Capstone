@@ -1,4 +1,5 @@
 import { Suspense, lazy } from "react";
+import SearchFailPage from "../pages/SearchFailPage";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -29,6 +30,10 @@ const root = createBrowserRouter([
         element: <Suspense fallback={Loading}><Who /></Suspense> //who 라우트 추가 
     },
     ,
+    {
+        path: "/fail",
+        element: <Suspense fallback={Loading}><SearchFailPage /></Suspense>
+    },
     {
         path: "/myprofile",
         element: <Suspense fallback={Loading}><MyProfile /></Suspense> //myprofile 라우트 추가 

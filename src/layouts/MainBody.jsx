@@ -1,9 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import initializeDragAndDrop from '../functions/initializeDragAndDrop'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Modal from '../components/Modal';
+import KakaoMap from '../components/KakaoMap';
+import MyKakaoMap from '../components/MyKakaoMap';
+
 
 const MainBody = () => {
     const [uploadedImage, setUploadedImage] = useState(null);
     const [isImageUploaded, setIsImageUploaded] = useState(false);
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         const dragDropAreaId = 'drag-drop-area';
@@ -38,12 +46,37 @@ const MainBody = () => {
     }
 
     const handleButtonClick = () => {
+
         // 버튼 클릭 이벤트 처리
+        // axios.post('https://localhost:8080/test/', {
+        //     
+        //         imageUrl: uploadedImage.src
+        //     
+        // })
+        axios.get('https://reqres.in/api/users?page=2', {
+        })
+            .then(
+                response => {
+                    const jsonData = response.data;
+                    //console.log(jsonData);
+                    const { id, email, first_name, last_name, avatar } = jsonData;
+                    navigate('/search', { state: { jsonData } });
+                }
+            ).catch(error => {
+                console.log(uploadedImage.src);
+                console.error(error);
+
+                //navigate('/fail');
+            });
+        //navigate('/search');
         console.log('Button clicked!');
+
     }
     return (
 
-        <div className="mt-10 containerflex-col justify-center">
+
+        <div className="mt-10 container flex justify-center">
+            <MyKakaoMap latitude={34} longitude={35} />
             <div id="drag-drop-area" className="text-center flex justify-center" onDrop={handleDrop}>
                 <label htmlFor="file-upload" className="ml-10 mt-10 cursor-pointer">
                     <input id="file-upload" type="file" className="hidden" />
@@ -56,7 +89,7 @@ const MainBody = () => {
                     {uploadedImage && <img className="w-32 h-32 mb-5" src={uploadedImage.src} alt="uploaded" />}
                     <button
                         className={`${isImageUploaded ? "bg-lime-700" : "bg-gray-600"} mb-2 rounded-md inline-flex px-3 py-2 text-lg text-white  font-serif`}
-                        onClick={handleButtonClick}
+                        onClick={() => handleButtonClick()}
                     //disabled={!isImageUploaded}
                     >
                         Ai Search

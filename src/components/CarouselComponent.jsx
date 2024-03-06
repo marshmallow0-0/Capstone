@@ -11,23 +11,23 @@ height: 100% .slick-list {
     margin: 0 auto;
     overflow-x: hidden;
 }
-  .slick-prev {
-    z-index: 1;
-    left: 1rem;
-    top: 6rem;
-  }
-  .slick-next {
-    right: 1rem;
-    top: 6rem;
-  }
+  // .slick-prev {
+  //   z-index: 1;
+  //   left: 1rem;
+  //   top: 6rem;
+  // }
+  // .slick-next {
+  //   right: 1rem;
+  //   top: 6rem;
+  // }
 
-  .slick-prev:before,
-  .slick-next:before {
-    font-size: 30px;
-    opacity: 0.5;
-    color: white;
+  // .slick-prev:before,
+  // .slick-next:before {
+  //   font-size: 30px;
+  //   opacity: 0.5;
+  //   color: white;
   
-  }
+  // }
   
   .slick-dots {
     li button:before {
@@ -49,7 +49,7 @@ export default function CarouselComponent() {
     slidesToScroll: 1,
     speed: 1000,
     draggable: true,
-    arrows: true,
+    //arrows: true,
     fade: true, // 사라졌다 나타나는 효과
     dots: true,
     autoplay: true,
@@ -76,8 +76,6 @@ export default function CarouselComponent() {
           <img className="w-full h-full object-center transition duration-300 ease-in-out hover:scale-110 rounded-md" src="img/배경3.jpg" alt="Top10" />
           <h1>3</h1>
         </div>
-
-
       </StyledSlider>
     </div>
   );
