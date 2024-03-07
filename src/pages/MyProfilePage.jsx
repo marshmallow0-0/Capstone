@@ -26,7 +26,7 @@ const MyProfilePage = () => {
     return (
         <BasicLayout>
             <div className=" min-h-screen  py-12">
-                <div className="max-w-3xl mx-auto bg-slate-300 rounded-lg overflow-hidden shadow-md">
+                <div className="max-w-5xl mx-auto bg-slate-300 rounded-lg overflow-hidden shadow-md">
                     <div className="px-6 py-6">
                         <div className="flex items-end">
                             <img className="h-24 w-24 rounded-full object-cover" src="/img/마이페이지.jpg" alt="프로필_이미지_설명" />
@@ -35,7 +35,7 @@ const MyProfilePage = () => {
                                 <span className="ml-3 text-sm text-gray-600">example@naver.com</span>
                             </div>
 
-                            <button className="m-1 bg-slate-400 hover:bg-slate-500 p-2 rounded-md shadow-md text-color">modify</button>
+                            {/* <button className="m-1 bg-slate-400 hover:bg-slate-500 p-2 rounded-md shadow-md text-color">modify</button> */}
 
                         </div>
                     </div>

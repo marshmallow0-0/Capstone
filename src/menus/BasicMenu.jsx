@@ -10,8 +10,9 @@ const BasicMenu = () => {
         <nav id='navbar' className={`fixed top-0 left-0 right-0 flex max-w-full bg-white p-3 z-10 shadow`}>
             <div className="w-full  flex  justify-center items-center ">
                 <div className="flex w-1/4  font-bold">
+
                     <img className="flex logoImg   w-12 h-12" src={`${process.env.PUBLIC_URL}/img/logo.png`} alt="Logo" />
-                    <div className="flex logoName mt-2 text-2xl  text-blue-500" style={{ textShadow: '2px 2px 2px rgba(0, 0, 0, 0.25)' }}>2JMU</div>
+                    <Link className="nav-link" to="/"><div className="flex logoName mt-2 text-2xl  text-blue-500" style={{ textShadow: '2px 2px 2px rgba(0, 0, 0, 0.25)' }}>2JMU</div></Link>
                 </div>
                 <div className="flex space-x-3">
                     {/* <Link className="nav-link" to="/search" >

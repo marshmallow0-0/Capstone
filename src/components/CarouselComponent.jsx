@@ -59,10 +59,10 @@ export default function CarouselComponent() {
   };
 
   return (
-    <div className="mt-20 p-10 mx-auto max-w-2xl">
+    <div className="mt-20 p-10 mx-auto max-w-2xl text-center">
       {/* <h2 className="text-center font-serif text-xl font-semibold">imageList</h2> */}
       <StyledSlider {...settings}>
-        <div className=" items-center   max-w-2xl  h-40  drop-shadow-xl ">
+        <div className=" items-center    max-w-2xl  h-40   drop-shadow-xl ">
           <img className="w-full h-full rounded-lg" src="img/배경.jpg" alt="Top10" />
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
           <h1>1</h1>

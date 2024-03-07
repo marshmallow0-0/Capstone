@@ -45,38 +45,73 @@ const MainBody = () => {
         handleDroppedFiles(files);
     }
 
-    const handleButtonClick = () => {
+    const handleButtonClick = async () => {
+        const latitude = 37.514322572335935;
+        const longitude = 127.06283102249932;
+        const radius = 20000;
+        const query = '카카오프렌즈';
+        const REST_API_KEY = '0ddb7ff8c9f3c350feff659e3267eb53';
 
-        // 버튼 클릭 이벤트 처리
-        // axios.post('https://localhost:8080/test/', {
-        //     
-        //         imageUrl: uploadedImage.src
-        //     
-        // })
-        axios.get('https://reqres.in/api/users?page=2', {
-        })
-            .then(
-                response => {
-                    const jsonData = response.data;
-                    //console.log(jsonData);
-                    const { id, email, first_name, last_name, avatar } = jsonData;
-                    navigate('/search', { state: { jsonData } });
+        try {
+            const response = await axios.get(
+                'https://dapi.kakao.com/v2/local/search/keyword.json',
+                {
+                    params: {
+                        y: latitude,
+                        x: longitude,
+                        radius: radius,
+                        query: query
+                    },
+                    headers: {
+                        'Authorization': `KakaoAK ${REST_API_KEY}`
+                    }
                 }
-            ).catch(error => {
-                console.log(uploadedImage.src);
-                console.error(error);
+            );
+            const jsonData = response.data;
+            navigate('/search', { state: { jsonData } });
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching nearby places:', error);
+        }
+    };
 
-                //navigate('/fail');
-            });
-        //navigate('/search');
-        console.log('Button clicked!');
+    const handleHowButtonClick = () => {
 
-    }
+        navigate('/how');
+
+    };
+    // const handleButtonClick = () => {
+
+
+    //     // 버튼 클릭 이벤트 처리
+    //     // axios.post('https://localhost:8080/test/', {
+    //     //     
+    //     //         imageUrl: uploadedImage.src
+    //     //     
+    //     // })
+    //     axios.get('https://reqres.in/api/users?page=2', {
+    //     })
+    //         .then(
+    //             response => {
+    //                 const jsonData = response.data;
+    //                 //console.log(jsonData);
+    //                 const { id, email, first_name, last_name, avatar } = jsonData;
+    //                 navigate('/search', { state: { jsonData } });
+    //             }
+    //         ).catch(error => {
+    //             console.log(uploadedImage.src);
+    //             console.error(error);
+
+    //             //navigate('/fail');
+    //         });
+    //     //navigate('/search');
+    //     console.log('Button clicked!');
+
+    // }
     return (
 
 
-        <div className="mt-10 container flex justify-center">
-            <MyKakaoMap latitude={34} longitude={35} />
+        <div className="mt-10 justify-center">
             <div id="drag-drop-area" className="text-center flex justify-center" onDrop={handleDrop}>
                 <label htmlFor="file-upload" className="ml-10 mt-10 cursor-pointer">
                     <input id="file-upload" type="file" className="hidden" />
@@ -88,13 +123,14 @@ const MainBody = () => {
                     </div>
                     {uploadedImage && <img className="w-32 h-32 mb-5" src={uploadedImage.src} alt="uploaded" />}
                     <button
-                        className={`${isImageUploaded ? "bg-lime-700" : "bg-gray-600"} mb-2 rounded-md inline-flex px-3 py-2 text-lg text-white  font-serif`}
+                        className={`${isImageUploaded ? "bg-blue-700" : "bg-gray-600"} mb-2 rounded-md inline-flex px-3 py-2 text-lg text-white  font-serif`}
                         onClick={() => handleButtonClick()}
                     //disabled={!isImageUploaded}
                     >
+
                         Ai Search
                     </button>
-                    <button className="bg-lime-700 inline-block rounded-md px-2 py-2 text-lg text-white font-serif">How to use</button>
+                    <button className="bg-lime-700 inline-block rounded-md px-2 py-2 text-lg text-white font-serif" onClick={() => handleHowButtonClick()}>How to use</button>
                 </div>
             </div>
 
