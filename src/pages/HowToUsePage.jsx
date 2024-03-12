@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import useObserver from "../hooks/useObserver";
 import BasicLayout from "../layouts/BasicLayout";
 import { opacityVariants } from "../styles/animation";

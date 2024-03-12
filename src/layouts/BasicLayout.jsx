@@ -1,11 +1,11 @@
 //전체적인 레이아웃 
-import BasicMenu from "../menus/BasicMenu";
 import Footer from "./Footer";
+import Header from "./Header";
 const BasicLayout = ({ children }) => {
     return (
         <>
             <div className="h-full">
-                <BasicMenu />
+                <Header />
                 <div className="mt-20 bg-white ">
                     <main className="container mx-auto min-h-screen">
                         {children}

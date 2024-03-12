@@ -29,6 +29,8 @@ function initializeDragAndDrop(dragDropAreaId, fileUploadInputId) {
         console.log('Selected files:', files);
         // 파일 처리 로직을 추가가능
     });
+
+
 }
 
 export default initializeDragAndDrop;

@@ -2,10 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import initializeDragAndDrop from '../functions/initializeDragAndDrop'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Modal from '../components/Modal';
-import KakaoMap from '../components/KakaoMap';
-import MyKakaoMap from '../components/MyKakaoMap';
-
 
 const MainBody = () => {
     const [uploadedImage, setUploadedImage] = useState(null);
@@ -76,13 +72,9 @@ const MainBody = () => {
     };
 
     const handleHowButtonClick = () => {
-
         navigate('/how');
-
     };
     // const handleButtonClick = () => {
-
-
     //     // 버튼 클릭 이벤트 처리
     //     // axios.post('https://localhost:8080/test/', {
     //     //     
@@ -131,6 +123,7 @@ const MainBody = () => {
                         Ai Search
                     </button>
                     <button className="bg-lime-700 inline-block rounded-md px-2 py-2 text-lg text-white font-serif" onClick={() => handleHowButtonClick()}>How to use</button>
+
                 </div>
             </div>
 

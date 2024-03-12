@@ -2,10 +2,8 @@
 //로고, Search, How to use, Who we are, myProfile, Login 버튼 모양 구성 
 //Search, How to use, Who we are, myProfile은 각각 css를 달리하여 이후 통일과정 필요 
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom"
-import SearchPage from "../pages/SearchPage";
-import MainPage from "../pages/MainPage";
-import HowToUsePage from "../pages/HowToUsePage";
-const BasicMenu = () => {
+
+const Header = () => {
     return (
         <nav id='navbar' className={`fixed top-0 left-0 right-0 flex max-w-full bg-white p-3 z-10 shadow`}>
             <div className="w-full  flex  justify-center items-center ">
@@ -50,5 +48,5 @@ const BasicMenu = () => {
     );
 }
 
-export default BasicMenu;
+export default Header;
 
