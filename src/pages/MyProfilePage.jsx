@@ -1,23 +1,26 @@
+//TODO
+//imageSrc 수정 
+
 import BasicLayout from "../layouts/BasicLayout";
 const callouts = [
     {
         name: 'City',
         description: 'bridges',
-        imageSrc: 'img/배경.jpg',
+        imageSrc: 'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823_640.jpg',
         imageAlt: '배경1',
         href: '#',
     },
     {
         name: 'Self',
         description: 'rain',
-        imageSrc: 'img/배경2.jpg',
+        imageSrc: 'https://cdn.pixabay.com/photo/2014/08/15/11/29/beach-418742_640.jpg',
         imageAlt: '배경2',
         href: '#',
     },
     {
         name: 'Travel',
         description: 'museum',
-        imageSrc: 'img/배경3.jpg',
+        imageSrc: 'https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287_640.jpg',
         imageAlt: '배경3',
         href: '#',
     },
@@ -29,7 +32,7 @@ const MyProfilePage = () => {
                 <div className="max-w-5xl mx-auto bg-slate-300 rounded-lg overflow-hidden shadow-md">
                     <div className="px-6 py-6">
                         <div className="flex items-end">
-                            <img className="h-24 w-24 rounded-full object-cover" src="/img/마이페이지.jpg" alt="프로필_이미지_설명" />
+                            <img className="h-24 w-24 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2015/07/27/20/16/book-863418_640.jpg" alt="프로필_이미지_설명" />
                             <div className="flex flex-col items-start">
                                 <strong className="ml-3 text-xl text-gray-800">user</strong>
                                 <span className="ml-3 text-sm text-gray-600">example@naver.com</span>

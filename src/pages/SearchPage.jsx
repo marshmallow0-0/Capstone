@@ -2,220 +2,85 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import BookMark from "../components/BookMark";
 import BasicLayout from "../layouts/BasicLayout";
-import styled from 'styled-components';
-import Kakao from "../components/Kakao";
 import { useLocation } from "react-router-dom";
+import KakaoMap from "../components/KakaoMap";
 
-const StyledSlider = styled(Slider)`
-width: 50%;
-height: 50% .slick-list {
-    margin: 0 auto;
-    overflow-x: hidden;
-}
-  .slick-prev {
-     z-index: 1;
-     left: 1rem;
-     top: 18rem;
-   }
-   .slick-next {
-     right: 1.5rem;
-     top: 18rem;
-   }
-
-   .slick-prev:before,
-   .slick-next:before {
-     font-size: 30px;
-     opacity: 0.5;
-     color: white;
-
-   }
-
-  .slick-dots {
-    li button:before {
-      color: black;
-    }
-    li.slick-active button:before {
-      color: black;
-    }
-  }
-`;
 
 const SearchPage = () => {
     const location = useLocation();
-    const { jsonData } = location.state;
-    console.log(jsonData.documents);
-    const result2 = jsonData.documents;
-    jsonData.documents.forEach(item => {
-        console.log('address_name', item.address_name);
-        console.log('id:', item.id)
-    })
-    // const results = [
-    //     {
-    //         img: 'img/배경.jpg',
-    //         name: 'test1',
-    //         roadName: 'test-road1',
-    //         openClose: 'open/close1',
-    //         siteUrl: 'https://example.com'
-    //     },
-    //     {
-    //         img: 'img/배경2.jpg',
-    //         name: 'test2',
-    //         roadName: 'test-road2',
-    //         openClose: 'open/close2',
-    //         siteUrl: 'https://example.com'
-    //     },
-    //     {
-    //         img: 'img/배경3.jpg',
-    //         name: 'test3',
-    //         roadName: 'test-road3',
-    //         openClose: 'open/close3',
-    //         siteUrl: 'https://example.com'
-    //     },
-    //     {
-    //         img: 'img/배경.jpg',
-    //         name: 'test4',
-    //         roadName: 'test-road4',
-    //         openClose: 'open/close4',
-    //         siteUrl: 'https://example.com'
-    //     },
-    //     {
-    //         img: 'img/배경.jpg',
-    //         name: 'test5',
-    //         roadName: 'test-road5',
-    //         openClose: 'open/close5',
-    //         siteUrl: 'https://example.com'
-    //     },
-    //     {
-    //         img: 'img/배경.jpg',
-    //         name: 'test1',
-    //         roadName: 'test-road1',
-    //         openClose: 'open/close1',
-    //         siteUrl: 'https://example.com'
-    //     },
-    //     {
-    //         img: 'img/배경2.jpg',
-    //         name: 'test2',
-    //         roadName: 'test-road2',
-    //         openClose: 'open/close2',
-    //         siteUrl: 'https://example.com'
-    //     },
-    //     {
-    //         img: 'img/배경3.jpg',
-    //         name: 'test3',
-    //         roadName: 'test-road3',
-    //         openClose: 'open/close3',
-    //         siteUrl: 'https://example.com'
-    //     },
-    //     {
-    //         img: 'img/배경.jpg',
-    //         name: 'test4',
-    //         roadName: 'test-road4',
-    //         openClose: 'open/close4',
-    //         siteUrl: 'https://example.com'
-    //     },
-    //     {
-    //         img: 'img/배경.jpg',
-    //         name: 'test5',
-    //         roadName: 'test-road5',
-    //         openClose: 'open/close5',
-    //         siteUrl: 'https://example.com'
-    //     }
-    // ];
+    const { jsonData2 } = location.state;
+    console.log(jsonData2);
+    console.log(3);
+    const result2 = jsonData2;
+    const [category, setCategory] = useState('');
 
+    //const buttonCss = "p-2 bg-slate-500 hover:bg-slate-600 rounded-md";
 
-    const buttonCss = "p-2 bg-slate-500 hover:bg-slate-600 rounded-md";
+    const [selectedResultIndex, setSelectedResultIndex] = useState(0);
 
-    const [contractStates, setContractStates] = useState(result2.map(() => true));
-    const [showCaffeInfo, setShowCaffeInfo] = useState(false); // 카페 정보를 보여주는 상태
-    const [showRestaurantInfo, setShowRestaurantInfo] = useState(false); // 맛집 정보를 보여주는 상태
+    const [checkedItems, setCheckedItems] = useState([]);
 
-    const toggleContract = (index) => {
-        const newContractStates = [...contractStates];
-        newContractStates[index] = !newContractStates[index];
-        setContractStates(newContractStates);
+    const handleCheckboxChange = (index) => {
+        const newCheckedItems = [...checkedItems];
+        newCheckedItems[index] = !newCheckedItems[index];
+        setCheckedItems(newCheckedItems);
+    };
+    const handleSelectedIndex = (index) => {
+        setSelectedResultIndex(index);
+        console.log(index);
     };
 
-    const handleCaffeClick = () => {
-
-        setShowCaffeInfo(true); // 카페 정보를 보여주는 상태를 true로 변경
-        setShowRestaurantInfo(false); // 맛집 정보를 보여주는 상태를 false로 변경
-
-    }
-
-    const handleRestaurantClick = () => {
-        setShowCaffeInfo(false); // 카페 정보를 보여주는 상태를 true로 변경
-        setShowRestaurantInfo(true); // 맛집 정보를 보여주는 상태를 false로 변경
-    }
+    const handleCategoryChange = (newCategory) => {
+        setCategory(newCategory);
+        console.log(newCategory);
+    };
 
     const settings = {
-        arrows: true,
-        //dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 6,
+        slidesToShow: 3,
         slidesToScroll: 1,
-        autoplay: false,
-        autoplaySpeed: 3000,
-        pauseOnHover: true
+        autoplay: true,
+        autoplaySpeed: 2000,
+        dots: true,
+        arrows: true,
+
     };
 
     return (
         <BasicLayout>
-
-            <div className="flex w-2/3 mx-auto rounded-md ">
-                <StyledSlider>
+            <div className="w-2/3">
+                <Slider {...settings}>
                     {result2.map((result, index) => (
-                        <div key={index} className="mt-20  rounded-md">
-                            {contractStates[index] ? (
-                                <div className="m-4 ">
-                                    <img className="rounded-md hover:opacity-75" src="img/배경.jpg" alt={result.address_name} onClick={() => toggleContract(index)} />
+                        <div key={index} className="mt-10 rounded-md shadow-md border-4">
+                            <div className="relative">
+                                <img className="rounded-md brightness-50 hover:brightness-100 w-30 h-40 " src={result.firstimage} alt={result.address_name} onClick={() => { handleCategoryChange(''); handleSelectedIndex(index); handleCheckboxChange(index); }} />
+                                <input defaultChecked={checkedItems[index] || false}
+                                    type="checkbox" className="appearance-none  checked:border-2   absolute top-0  w-8 h-8  rounded-full" />
 
-                                    <div className="">
-                                        <div>
-                                            <button className="border border-gray-300 rounded-md p-2" onClick={() => toggleContract(index)}>카페</button>
-                                            <button className="border border-gray-300 rounded-md p-2" onClick={handleRestaurantClick}>맛집</button>
-                                            <button className="border border-gray-300 rounded-md p-2" onClick={handleRestaurantClick}>관광지</button>
-                                        </div>
-                                        {/* {showCaffeInfo && <Kakao mapx={result.x} mapy={result.y} ml={6} />}
-                                    {showRestaurantInfo && <Kakao mapx={result.x} mapy={result.y} ml={6} />} */}
+                                <div className="absolute bottom-0 left-0">
 
-                                        {/* <button className={buttonCss} onClick={() => toggleContract(index)}>더보기</button> */}
-                                    </div>
+                                    <button className="border border-gray-300 rounded-md p-1 text-white bg hover:bg-slate-500 hover:text-black hover:ease-in duration-300" onClick={() => handleCategoryChange('')}>정보</button>
+                                    <button className="border border-gray-300 rounded-md p-1 text-white hover:bg-slate-600 hover:text-gray-500 hover:ease-out duration-500" onClick={() => handleCategoryChange('CE7')}>카페</button>
+                                    <button className="border border-gray-300 rounded-md p-1 text-white hover:bg-amber-50 hover:text-gray-500 hover:ease-in-out duration-700" onClick={() => handleCategoryChange('FD6')}>음식점</button>
+                                    <button className="border border-gray-300 rounded-md p-1 text-white" onClick={() => handleCategoryChange('AT4')}>관광지</button>
                                 </div>
-                            ) : (
-                                <div>
-                                    <img className="rounded-md leading-6" src="img/배경.jpg" alt={result.name} />
-                                    <p className="font-serif">Name: {result.place_name}</p>
-                                    <p className="font-serif">RoadName: {result.address_name}</p>
-                                    <p className="font-serif">phone: {result.phone}</p>
-                                    <p className="font-serif">siteUrl: {result.place_url}</p>
-                                    <div className="flex items-center justify-center my-6">
-                                        <button onClick={() => toggleContract(index)} className={buttonCss}>줄이기</button>
-                                    </div>
-                                    <div>
-                                        {/* <Kakao /> */}
-                                        <Kakao mapx={result.x} mapy={result.y} ml={6} />
-                                    </div>
+                            </div>
+                            <div className="flex justify-center items-center shadow-lg rounded-md px-2 ml-2">
+
+                                <div className="content-center">
+                                    <p className="font-serif text-xl">이름: {result.title}</p>
+                                    <p className="font-serif text-xl">주소: {result.addr1}</p>
                                 </div>
-                            )}
+                            </div>
                         </div>
                     ))}
-                </StyledSlider>
+
+                </Slider>
+
+                <KakaoMap mapx={result2[selectedResultIndex].mapx} mapy={result2[selectedResultIndex].mapy} category={category} />
             </div>
 
-            <BookMark />
-            {/* <div>
-                <ul>
-                    {jsonData.data.map(item => (
-                        <div>
-                            <li key={item.id}>Email: {item.email}</li>
-                            <li key={item.id}>id: {item.id}</li>
-                        </div>
-                    ))}
-                </ul>
-            </div> */}
+
         </BasicLayout >
     );
 };

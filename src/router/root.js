@@ -3,6 +3,8 @@ import SearchFailPage from "../pages/SearchFailPage";
 
 const { createBrowserRouter } = require("react-router-dom");
 
+//TODO 
+//현재 로딩화면이 div Loading 으로 단순 구성되어있으므로 수정화면을 별도로 만들어야 한다
 const Loading = <div>Loading....</div>
 const Main = lazy(() => import("../pages/MainPage"))
 const How = lazy(() => import("../pages/HowToUsePage"))

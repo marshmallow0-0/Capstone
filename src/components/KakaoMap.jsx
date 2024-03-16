@@ -1,44 +1,65 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 
-const KakaoMap = () => {
+const KakaoMap = ({ mapx, mapy, category }) => {
     useEffect(() => {
-        const fetchNearbyPlaces = async () => {
-            const latitude = 37.514322572335935;
-            const longitude = 127.06283102249932;
-            const radius = 20000;
-            const query = '카카오프렌즈';
-            const REST_API_KEY = '0ddb7ff8c9f3c350feff659e3267eb53';
+        var infowindow = new window.kakao.maps.InfoWindow({ zIndex: 1 });
 
-            try {
-                const response = await axios.get(
-                    'https://dapi.kakao.com/v2/local/search/keyword.json',
-                    {
-                        params: {
-                            y: latitude,
-                            x: longitude,
-                            radius: radius,
-                            query: query
-                        },
-                        headers: {
-                            'Authorization': `KakaoAK ${REST_API_KEY}`
-                        }
-                    }
-                );
-                console.log(response.data);
-            } catch (error) {
-                console.error('Error fetching nearby places:', error);
-            }
+        var mapContainer = document.getElementById('map');
+        var mapOption = {
+            center: new window.kakao.maps.LatLng(mapy, mapx),
+            level: 3
         };
 
-        fetchNearbyPlaces();
-    }, []);
+        var map = new window.kakao.maps.Map(mapContainer, mapOption);
+        // 카테고리가 비어 있는 경우 기본 위치로 마커 생성
+        if (category === '') {
+            var position = new window.kakao.maps.LatLng(mapy, mapx);
+            var marker = new window.kakao.maps.Marker({
+                position: position,
+                clickable: true
+            });
+            marker.setMap(map);
+        } else {
+            var ps = new window.kakao.maps.services.Places(map);
+            ps.categorySearch(category, placesSearchCB, { useMapBounds: true });
+        }
 
-    return (
-        <div>
-            <div id="map2" style={{ width: '500px', height: '400px' }}></div>
-        </div>
-    );
+        function placesSearchCB(data, status, pagination) {
+            if (status === window.kakao.maps.services.Status.OK) {
+                for (var i = 0; i < data.length; i++) {
+                    displayMarker(data[i]);
+                }
+            }
+        }
+
+        function displayMarker(place) {
+            var marker = new window.kakao.maps.Marker({
+                map: map,
+                position: new window.kakao.maps.LatLng(place.y, place.x)
+            });
+
+            window.kakao.maps.event.addListener(marker, 'mouseover', function () {
+                var content = `
+                <div class="placeinfo">
+                    <a class="title" href="${place.place_url}" style="color: blue; text-decoration: underline;">
+                        ${place.place_name}<br>
+                    </a>
+                    ${place.road_address_name ?
+                        `<span title="${place.road_address_name}">  ${place.road_address_name}<br> </span>` +
+                        `<span class="jibun" title="${place.address_name}">(지번 : ${place.address_name}) <br> </span>` :
+                        `<span title="${place.address_name}">${place.address_name}</span>`
+                    }
+                    <span class="tel">${place.phone}</span>
+                </div>
+                <div class="after"></div>`;
+
+                infowindow.setContent(content);
+                infowindow.open(map, marker);
+            });
+        }
+    }, [mapx, mapy, category]);
+
+    return <div id="map" style={{ width: '500px', height: '400px' }}></div>;
 };
 
 export default KakaoMap;
